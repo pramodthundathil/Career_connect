@@ -1,0 +1,133 @@
+{% extends "homeindex.html" %}
+
+{% block content %}
+<style>
+    td {
+        color: white !important;
+    }
+</style>
+
+<div class="container">
+    <div class="content mt-5 mb-5">
+        <h1 class="text-center text-danger">You Are Not updated Your Profile Please Update it to continue...</h1>
+
+        <form action="{%url 'CreateStudentProfile' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <section class="job_section layout_padding">
+                <div class="container">
+                    <table class="table">
+                        <h4 class="job_heading">
+                            Personal Information
+                        </h4><br>
+                        <div class="contaniner">
+                            <tr>
+                                <td>First Name</td>
+                                <td><input type="text" class="form-control disabled" value="{{request.user.first_name}}"
+                                        readonly></td>
+                            </tr>
+                            <tr>
+                                <td>Last Name:</td>
+                                <td><input type="text" class="form-control" placeholder="Last Name" required
+                                        name="lname"></td>
+                            </tr>
+                            <tr>
+                                <td>Phone Number:</td>
+                                <td><input type="number" class="form-control" placeholder="Phone Nummer" required
+                                        name="phone"></td>
+                            </tr>
+                            <tr>
+                                <td>Adderes:</td>
+                                <td><textarea type="text" class="form-control" placeholder="Address" required
+                                        name="address"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td>Bio Description:</td>
+                                <td><textarea type="text" class="form-control" placeholder="Bio Description" required
+                                        name="bio"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td>Skills:</td>
+                                <td><textarea type="text" class="form-control" placeholder="Skills" required
+                                        name="skills"></textarea></td>
+                            </tr>
+                            <tr>
+                                <td>Languages:</td>
+                                <td><input type="text" class="form-control" placeholder="Languages eg:English, Malayalam etc" required name="lng"></td>
+                            </tr>
+                            <tr>
+                                <td>Upload Photo:</td>
+                                <td><input type="file" class="form-control"
+                                        placeholder="Languages eg:English, Malayalam etc" required name="photo"></td>
+                            </tr>
+                            <tr>
+                                <td>Upload Resume:</td>
+                                <td><input type="file" class="form-control"
+                                        placeholder="Languages eg:English, Malayalam etc" required name="resume"></td>
+                            </tr>
+                       <tr>
+                        <th colspan="2">
+                            <h3 class="text-light">EDUCATIONAL INFORMATION</h3>
+                        </th>
+                       </tr>
+                
+                            <tr>
+                                <td>Study Stream</td>
+                                <td><input type="text" class="form-control disabled" value="" placeholder="Study Stream" name="stream"></td>
+                            </tr>
+                            <tr>
+                                <td>Institution:</td>
+                                <td><input type="text" class="form-control" placeholder="Institution" required
+                                        name="institution"></td>
+                            </tr>
+                            <tr>
+                                <td>Year:</td>
+                                <td><input type="number" class="form-control" placeholder="year" required
+                                        name="year"></td>
+                            </tr>
+                            <tr>
+                                <td>CGPA:</td>
+                                <td><input type="text" class="form-control"
+                                        placeholder="CGPA" required name="cgpa"></td>
+                            </tr>
+                        </div>
+                    </table>
+                        <button type="submit" class="btn btn-primary text-right">Create Profile</button>
+
+                </div>
+            </section>
+            <!-- <section class="job_section layout_padding">
+                <div class="container">
+                    <table class="table">
+                        <h4 class="job_heading">
+                            Experiance **Not Mandatory
+                        </h4><br>
+                        <div class="contaniner">
+                            <tr>
+                                <td>Study Stream</td>
+                                <td><input type="text" class="form-control disabled" value="" placeholder="Study Stream" name="stream"></td>
+                            </tr>
+                            <tr>
+                                <td>Institution:</td>
+                                <td><input type="text" class="form-control" placeholder="Institution" required
+                                        name="institution"></td>
+                            </tr>
+                            <tr>
+                                <td>Year:</td>
+                                <td><input type="number" class="form-control" placeholder="year" required
+                                        name="year"></td>
+                            </tr>
+                            <tr>
+                                <td>CGPA:</td>
+                                <td><input type="text" class="form-control"
+                                        placeholder="CGPA" required name="cgpa"></td>
+                            </tr>
+                        </div>
+                    </table>
+                </div>
+            </section> -->
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

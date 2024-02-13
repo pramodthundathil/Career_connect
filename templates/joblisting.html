@@ -1,0 +1,126 @@
+{% extends "recruiterindex.html" %}
+{% load static %}
+{% block content %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<style>
+    .content{
+        width:100%;
+        margin: auto;
+        text-align: center;
+    }
+    .modal input, select{
+        width:100%;
+        border-radius: 5px;
+        border: .5px solid gray;
+        padding: 6px;
+    }
+
+</style>
+<div class="container mt-5 mb-5">
+     <div class="content">
+            <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">Add A Job</button>
+     
+            {% for message in messages %}
+            <h6 style="color:red;text-align:center">{{message}}</h6> 
+             {% endfor %}
+        </div>
+</div>
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog model-info">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Create a Job</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form method="post">
+            {% csrf_token %}
+        <div class="modal-body">
+            {% for field in form %}
+            {{field.label}}: <br>
+            {{field}} <br><br>
+
+            {% endfor %}
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save</button>
+        </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- job section -->
+  <section class="job_section layout_padding">
+    <div class="container">
+      
+      <div class="job_container">
+        <h4 class="job_heading">
+          My Jobs
+        </h4>
+        <div class="row">
+            {% for job in jobs %}
+          <div class="col-lg-6">
+            <div class="box">
+              <div class="job_content-box">
+                <div class="img-box">
+                  <img src="{{job.company_profile.conmpany_logo_or_photo.url}}" style="background-size: contain;" alt="">
+                </div>
+                <div class="detail-box">
+                  <h5>
+                    Looking {{job.Job_title}}
+                  </h5>
+                  <div class="detail-info">
+                    <h6>
+                      <i class="fa fa-map-marker" aria-hidden="true"></i>
+                      <span>
+                        {{job.Location}}
+                      </span>
+                    </h6>
+                    <h6>
+                      <i class="fa fa-money" aria-hidden="true"></i>
+                      <span>
+                        {{job.Salary_start}}/mo to {{job.Salary_end}}
+                      </span>
+                    </h6>
+                  </div>
+                </div>
+              </div>
+              <div class="option-box">
+                {% if job.approval_status == True %}
+                <button class="fav-btn bg-success">
+                    
+                  Approvad job is live
+                </button>
+                {% else %}
+                <button class="fav-btn bg-warning">
+                Pending For approvad
+                    
+                  </button>
+                {% endif %}
+                <a href="" class="btn btn-info">
+                  View
+                </a>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+         
+        </div>
+      </div>
+      <div class="btn-box">
+        <a href="">
+          View All
+        </a>
+      </div>
+    </div>
+  </section>
+  <!-- end job section -->
+
+{% endblock %}

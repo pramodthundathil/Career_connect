@@ -1,0 +1,88 @@
+{% extends "index.html" %}
+{% load static %}
+{% block content %}
+<style>
+    .find_container{
+        width:60%;
+        margin: auto;
+        margin-top: 30px;
+        padding: 20px;
+        border: 1px solid rgb(236, 63, 63);
+        border-radius: 20px;
+        background-color: rgb(12, 12, 61);
+    }
+    .find_container input{
+        width:100%;
+        padding:6px;
+        border: .5px solid gray;
+    }
+    .find_container {
+        color:white !important;
+    }
+</style>
+
+  <!-- slider section -->
+    <!-- <section class="slider_section "> -->
+      <div class="container ">
+       
+        <div class="find_container mb-5">
+          <div class="container">
+            <div class="row">
+              <div class="col">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                  <div class="form-row ">
+                    <div class="detail-box col-lg-12">
+                        <h1>
+                          
+                         Recruiter Signup
+                          
+                        </h1>
+                        
+                        <br><br>
+                      </div>
+                  {% for field in form  %}
+                  
+                    <div class="form-group col-lg-6">
+                    {{field.label}}: <br>
+                    {{field}}
+                    </div>
+                  {% endfor %}
+                  <div class="form-group col-lg-6">
+                  <label for="">Company Description</label><br>
+                    <input type="text" name="dis" placeholder="Compnay Description" required>
+                  </div>
+                  <div class="form-group col-lg-6">
+                    <label for="">Field of work</label><br>
+                      <input type="text" name="fow" placeholder="Field of work" required>
+                    </div>
+
+                    <div class="form-group col-lg-6">
+                        <label for="">Company Logo or photo</label><br>
+                          <input type="file" name="logo" placeholder="Field of work" required>
+                        </div>
+                    
+
+                    
+                    <div class="form-group col-lg-12 text-center">
+
+                      <div class="btn-box text-center align-center">
+                        <button type="submit" class="btn btn-info ">Register</button>
+                      </div>
+                      <br>
+                      <p>This Registration Form Is only for Recruiter </p>
+                        Students Registration plaese click <a href="{%url 'SignUp' %}">Here</a>
+                    </div>
+                    
+                     
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- </section> -->
+    <!-- end slider section -->
+
+{% endblock %}
