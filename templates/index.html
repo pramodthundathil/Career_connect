@@ -57,13 +57,13 @@
                 <a class="nav-link" href="{%url 'Home' %}">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="about.html"> About</a>
+                <a class="nav-link" href="#about"> About</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="job.html">Jobs</a>
+                <a class="nav-link" href="#jobs">Jobs</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="freelancer.html">Freelancers</a>
+                <a class="nav-link" href="#comanies">Comanies</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{%url 'SignIn' %}">
@@ -257,7 +257,7 @@
 
   <!-- about section -->
 
-  <section class="about_section layout_padding">
+  <section class="about_section layout_padding" id="about">
     <div class="container">
       <div class="row">
         <div class="col-md-6">
@@ -290,7 +290,7 @@
   <!-- end about section -->
 
   <!-- job section -->
-  <section class="job_section layout_padding">
+  <section class="job_section layout_padding" id="jobs">
     <div class="container">
       <div class="heading_container heading_center">
         <h2>
@@ -302,231 +302,45 @@
           Featured Jobs
         </h4>
         <div class="row">
+        {% for job in jobs %}
           <div class="col-lg-6">
             <div class="box">
               <div class="job_content-box">
                 <div class="img-box">
-                  <img src="{%static 'images/job_logo1.png' %}" alt="">
+                  <img src="{{job.company_profile.conmpany_logo_or_photo.url}}" style="background-size: contain;" alt="">
                 </div>
                 <div class="detail-box">
                   <h5>
-                    Development Team Lead
+                    Looking {{job.Job_title}}
                   </h5>
                   <div class="detail-info">
                     <h6>
                       <i class="fa fa-map-marker" aria-hidden="true"></i>
                       <span>
-                        Washington. D.C.
+                        {{job.Location}}
                       </span>
                     </h6>
                     <h6>
                       <i class="fa fa-money" aria-hidden="true"></i>
                       <span>
-                        $1200 - $1300
+                        {{job.Salary_start}}/mo to {{job.Salary_end}}
                       </span>
                     </h6>
                   </div>
                 </div>
               </div>
               <div class="option-box">
-                <button class="fav-btn">
-                  <i class="fa fa-heart-o" aria-hidden="true"></i>
-                </button>
-                <a href="" class="apply-btn">
-                  Apply Now
+                <a href="" class="btn btn-info">
+                  View
                 </a>
               </div>
             </div>
           </div>
-          <div class="col-lg-6">
-            <div class="box">
-              <div class="job_content-box">
-                <div class="img-box">
-                  <img src="images/job_logo2.png" alt="">
-                </div>
-                <div class="detail-box">
-                  <h5>
-                    Make my website responsive device compatible
-                  </h5>
-                  <div class="detail-info">
-                    <h6>
-                      <i class="fa fa-map-marker" aria-hidden="true"></i>
-                      <span>
-                        New York
-                      </span>
-                    </h6>
-                    <h6>
-                      <i class="fa fa-money" aria-hidden="true"></i>
-                      <span>
-                        $200 - $340
-                      </span>
-                    </h6>
-                  </div>
-                </div>
-              </div>
-              <div class="option-box">
-                <button class="fav-btn">
-                  <i class="fa fa-heart-o" aria-hidden="true"></i>
-                </button>
-                <a href="" class="apply-btn">
-                  Apply Now
-                </a>
-              </div>
-            </div>
-          </div>
+          {% endfor %}
+          
         </div>
       </div>
-      <div class="job_container">
-        <h4 class="job_heading">
-          Recent Jobs
-        </h4>
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="box">
-              <div class="job_content-box">
-                <div class="img-box">
-                  <img src="{%static 'images/job_logo3.png' %}" alt="">
-                </div>
-                <div class="detail-box">
-                  <h5>
-                    Looking Graphic Designer (Logo + UI)
-                  </h5>
-                  <div class="detail-info">
-                    <h6>
-                      <i class="fa fa-map-marker" aria-hidden="true"></i>
-                      <span>
-                        Washington. D.C.
-                      </span>
-                    </h6>
-                    <h6>
-                      <i class="fa fa-money" aria-hidden="true"></i>
-                      <span>
-                        $1200/mo
-                      </span>
-                    </h6>
-                  </div>
-                </div>
-              </div>
-              <div class="option-box">
-                <button class="fav-btn">
-                  <i class="fa fa-heart-o" aria-hidden="true"></i>
-                </button>
-                <a href="" class="apply-btn">
-                  Apply Now
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="box">
-              <div class="job_content-box">
-                <div class="img-box">
-                  <img src="{%static 'images/job_logo6.png' %}" alt="">
-                </div>
-                <div class="detail-box">
-                  <h5>
-                    Are you Typography Expert?
-                  </h5>
-                  <div class="detail-info">
-                    <h6>
-                      <i class="fa fa-map-marker" aria-hidden="true"></i>
-                      <span>
-                        New York
-                      </span>
-                    </h6>
-                    <h6>
-                      <i class="fa fa-money" aria-hidden="true"></i>
-                      <span>
-                        $56 - $90
-                      </span>
-                    </h6>
-                  </div>
-                </div>
-              </div>
-              <div class="option-box">
-                <button class="fav-btn">
-                  <i class="fa fa-heart-o" aria-hidden="true"></i>
-                </button>
-                <a href="" class="apply-btn">
-                  Apply Now
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="box">
-              <div class="job_content-box">
-                <div class="img-box">
-                  <img src="{%static 'images/job_logo5.png' %}" alt="">
-                </div>
-                <div class="detail-box">
-                  <h5>
-                    Looking WordPress Developer for ThemeForest
-                  </h5>
-                  <div class="detail-info">
-                    <h6>
-                      <i class="fa fa-map-marker" aria-hidden="true"></i>
-                      <span>
-                        Washington. D.C.
-                      </span>
-                    </h6>
-                    <h6>
-                      <i class="fa fa-money" aria-hidden="true"></i>
-                      <span>
-                        $400 - $540
-                      </span>
-                    </h6>
-                  </div>
-                </div>
-              </div>
-              <div class="option-box">
-                <button class="fav-btn">
-                  <i class="fa fa-heart-o" aria-hidden="true"></i>
-                </button>
-                <a href="" class="apply-btn">
-                  Apply Now
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-6">
-            <div class="box">
-              <div class="job_content-box">
-                <div class="img-box">
-                  <img src="{%static 'images/job_logo4.png' %}" alt="">
-                </div>
-                <div class="detail-box">
-                  <h5>
-                    Hiring Web Designer for Project
-                  </h5>
-                  <div class="detail-info">
-                    <h6>
-                      <i class="fa fa-map-marker" aria-hidden="true"></i>
-                      <span>
-                        Washington. D.C.
-                      </span>
-                    </h6>
-                    <h6>
-                      <i class="fa fa-money" aria-hidden="true"></i>
-                      <span>
-                        $350 - $450
-                      </span>
-                    </h6>
-                  </div>
-                </div>
-              </div>
-              <div class="option-box">
-                <button class="fav-btn">
-                  <i class="fa fa-heart-o" aria-hidden="true"></i>
-                </button>
-                <a href="" class="apply-btn">
-                  Apply Now
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      
       <div class="btn-box">
         <a href="">
           View All
@@ -538,7 +352,7 @@
 
   <!-- expert section -->
 
-  <section class="expert_section layout_padding">
+  <section class="expert_section layout_padding" id="company">
     <div class="container">
       <div class="heading_container heading_center">
         <h2>
@@ -555,7 +369,7 @@
         <div class="col-md-6 col-lg-4 mx-auto">
           <div class="box">
             <div class="img-box">
-              <img src="{{company.conmpany_logo_or_photo.url}}" alt="">
+              <img src="{{company.conmpany_logo_or_photo.url}}" style="height:200px" alt="">
             </div>
             <div class="detail-box">
               <a href="">
@@ -589,7 +403,7 @@
       </div>
       <div class="btn-box">
         <a href="">
-          View All Freelancers
+          View Companies
         </a>
       </div>
     </div>

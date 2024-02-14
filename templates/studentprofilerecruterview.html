@@ -1,0 +1,150 @@
+{% extends "recruiterindex.html" %}
+{% block content %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<style>
+    .container{
+        width:90%;
+        margin: auto;
+        border: 1px solid white;
+        padding: 20px;
+        border-radius: 10px;
+
+    }
+    .container .resume{
+        border-bottom: 1px solid red;
+    }
+    .container .head2{
+        text-transform: uppercase;
+    }
+    .contact{
+        /* width:90%; */
+        /* margin: auto; */
+        /* text-align: center; */
+        padding-top: 20px;
+        border-top: .5px solid white;
+    }
+    .skills{
+        padding: 20px;
+        border-right: .5px solid white;
+    }
+    .education{
+        padding: 20px;
+    }
+    .qualification{
+        padding: 10px;
+        border-bottom: .5px solid white;
+    }
+    h3{
+        border-bottom: .5px solid gray ;
+    }
+    .contai{
+        width:90%;
+        margin: auto;
+    }
+    .contai a{
+        text-decoration: none;
+        color: aqua;
+    }
+</style>
+<div class="contai">
+    <!-- <h5><a href=""><i class="bi bi-arrow-left-circle"></i> Go Back To Job</a></h5> -->
+</div>
+<section class="job_section layout_padding">
+    <div class="container">
+    <h2>Applicant Profile</h2>
+    
+    {% for message in messages %}
+    <h6 style="color:red;text-align:center">{{message}}</h6> 
+     {% endfor %}
+    <div class="container">
+        <div class="row top resume">
+            <div class="col-md-3 photo">
+                <img src="{{applicant.applicant_profile.Photo.url}}" width="150px" alt="">
+                <br>
+            </div>
+            <div class="col-md-9">
+                <div class="bio" >
+                <h2 class="head2">{{applicant.applicant.first_name}}  {{applicant.applicant_profile.last_name}}</h2>
+                
+                 <br>
+                </div>
+                <div class="contact">
+                    <p>
+                        Phone: {{applicant.applicant_profile.Phone_number}}
+                        Email: {{applicant.applicant_profile.user.email}}
+                    </p>
+                    <p>
+                        Address: {{applicant.applicant_profile.address}}
+                    </p>
+                </div>
+                
+            </form>
+            </div>
+        </div>
+        <div class="row content">
+            <div class="col-md-4 skills">
+                <h3>Skills</h3>
+                <p>{{applicant.applicant_profile.Skills}}</p>
+                <h3>Languages</h3>
+                <p>{{applicant.applicant_profile.Languages}}</p>
+            </div>
+            <div class="col-md-8 education">
+                <h3 class="p-3">Educational Qualification <br></h3>
+                {% for i in applicatedu %}
+              <div class="qualification">
+                <h4>{{i.stream}} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <small style="font-size: x-small;">{{i.year}}</small></h4>
+                <h5>{{i.institution}}</h5>
+                <p>CGPA: {{i.CGPA}}</p>
+
+              </div>
+              {% endfor %}
+<br><br>
+              <a href="{{applicant.applicant_profile.resume.url}}" target="_blank" class="btn btn-warning">View Resume</a>
+
+              <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="text-bg-white">Schedule Interview For This Applicant</a>
+              
+                
+              </p>
+                
+
+            </div>
+
+        </div>
+
+    </div>
+    </div>
+</section>
+
+
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Schedule Interview</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form action="{%url 'InterviewSchedule' applicant.id %}" method="post">
+            {% csrf_token  %}
+        <div class="modal-body">
+            Date:
+            <input type="date" name="date" required class="form-control"><br><br>
+            Time:
+            <input type="time" name="time" required class="form-control"><br><br>
+            
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Schedule</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+ 
+
+{% endblock %}

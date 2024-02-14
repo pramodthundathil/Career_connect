@@ -57,13 +57,13 @@
                 <a class="nav-link" href="{%url 'Home' %}">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="about.html"> About</a>
+                <a class="nav-link" href="{%url 'RecruiterIndex' %}#about"> About</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="job.html">Applied Students</a>
+                <a class="nav-link" href="{%url 'interviewSchedules' %}">Interview Schedules</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="freelancer.html">My Jobs</a>
+                <a class="nav-link" href="{%url 'JobListing' %}">My Jobs</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="{%url 'SignOut' %}">
@@ -146,7 +146,7 @@
                     </div>
                     <div class="form-group col-lg-4 text-center">
                       <div class="btn-box text-center">
-                        <a href="{%url 'SignUp' %}" type="submit" class="btn btn-warning bg-warning">View Resumes</a>
+                        <a href="{%url 'JobListing' %}" type="submit" class="btn btn-warning bg-warning">View Resumes</a>
                       </div>
                     </div>
                      <div class="form-group col-lg-2 text-center">
@@ -250,7 +250,7 @@
 
   <!-- about section -->
 
-  <section class="about_section layout_padding">
+  <section class="about_section layout_padding" id="about">
     <div class="container">
       <div class="row">
         <div class="col-md-6">

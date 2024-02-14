@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from Home.models import RecruiterData
+from Home.models import RecruiterData, StudentProfile
 
 class Joblist(models.Model):
     options = (("Software","Software"),("IT","IT"),("Technical","Technical"),("Accounts","Accounts"),("Mamagement","Management"),("HR","HR"),("Marketing","Marketing"),("Other","Other"))
@@ -17,4 +17,18 @@ class Joblist(models.Model):
 
     def __str__(self):
         return self.Job_title
+    
+class Jobapplication(models.Model):
+    job = models.ForeignKey(Joblist,on_delete = models.CASCADE)
+    applicant = models.ForeignKey(User,on_delete = models.CASCADE)
+    applicant_profile = models.ForeignKey(StudentProfile,on_delete = models.CASCADE, null=True, blank=True)
+    date = models.DateField(auto_now_add = True)
+    status = models.BooleanField(null= True, blank = True)
+
+class InterViewSchedule(models.Model):
+    date = models.DateField(auto_now_add = False)
+    time = models.TimeField(auto_now_add = False)
+    applicant = models.ForeignKey(User,on_delete = models.CASCADE )
+    job = models.ForeignKey(Joblist,on_delete = models.CASCADE)
+    company =  models.ForeignKey(RecruiterData,on_delete = models.CASCADE)
 

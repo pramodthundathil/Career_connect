@@ -1,0 +1,68 @@
+{% extends "homeindex.html" %}
+{% block content %}
+<style>
+    .content{
+        width:90%;
+        padding: 20px;
+        margin: auto;
+        border-radius: 10px;
+        border: .5px solid white;
+        color: white !important;
+    }
+    .content h1{
+        border-bottom: .5px solid gray;
+    }
+</style>
+
+<div class="container mt-5 mb-5">
+    <div class="content">
+        <div class="row">
+            <div class="col md-6">
+                {% for message in messages %}
+                          <h6 style="color:yellow;text-align:center">{{message}}</h6> 
+                           {% endfor %}
+                <div class="item">
+                    <h1>JOB DESCRIPTION</h1>
+                    <h3>Job Title: {{job.Job_title}}</h3>
+                    <h4>{{job.mode_of_work}}</h4>
+                    <h4>Salary:{{job.Salary_start}} - {{job.Salary_end}}</h4>
+                    <p>Description: {{job.job_description}} </p>
+                    <p><b>{{job.Location}}</b></p>
+                </div>
+            </div>
+            <div class="col md-6">
+               <h1> COMPANY DESCRIPTION</h1>
+                <div class="item">
+                    <h3>Comapany: {{job.company_profile.user.first_name}} </h3>
+                    <h4>{{job.company_profile.profile}} {{job.company_profile.field_of_work}}</h4>
+                    <img src="{{job.company_profile.conmpany_logo_or_photo.url}}" width="200px" alt="">
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="item">
+                    <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-success">Aplay To This Job</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+       
+        <div class="modal-body">
+          Do You Want To Apply To this Job ?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+          <a href="{%url 'Applaytojob' job.id %}" type="button" class="btn btn-primary">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

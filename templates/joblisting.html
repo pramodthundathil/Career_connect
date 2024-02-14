@@ -69,10 +69,19 @@
           <div class="col-lg-6">
             <div class="box">
               <div class="job_content-box">
+                
                 <div class="img-box">
+                
                   <img src="{{job.company_profile.conmpany_logo_or_photo.url}}" style="background-size: contain;" alt="">
                 </div>
                 <div class="detail-box">
+                {% if job.approval_status == True %}
+                <span class="badge text-bg-success">Approved Job is live</span>
+                {% else %}
+                <span class="badge text-bg-warnng">
+                Pending For approvad
+                  </span>
+                {% endif %}
                   <h5>
                     Looking {{job.Job_title}}
                   </h5>
@@ -93,19 +102,13 @@
                 </div>
               </div>
               <div class="option-box">
-                {% if job.approval_status == True %}
-                <button class="fav-btn bg-success">
-                    
-                  Approvad job is live
-                </button>
-                {% else %}
-                <button class="fav-btn bg-warning">
-                Pending For approvad
-                    
-                  </button>
-                {% endif %}
-                <a href="" class="btn btn-info">
+                
+                <a href="{%url 'JobViewRecruiter' job.id %}" class="btn btn-info">
                   View
+                </a>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="{%url 'DeleteJob' job.id %}" class="btn btn-danger">
+                  delete
                 </a>
               </div>
             </div>

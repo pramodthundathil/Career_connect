@@ -61,8 +61,7 @@
                 <h2 class="head2">{{request.user.first_name}}  {{profile.last_name}}</h2>
                 <form action="{%url 'updateprofiledata' profile.id %}" method="post">
                     {% csrf_token %}
-                <p><input type="text" name="dis" value="{{profile.Bio_Discription}}" style="background-color: transparent; width:100%; color: white;border: none;"></p>
-                <br>
+                 <br>
                 </div>
                 <div class="contact">
                     <p>

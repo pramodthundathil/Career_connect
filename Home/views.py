@@ -3,23 +3,29 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import UserAddForm
 from django.contrib.auth.models import User, Group
-from .models import RecruiterData, Education, Experiance, StudentProfile
+from .models import RecruiterData, Education, Experiance, StudentProfile, ResumeWritingTips
 from .decorators import admin_only, UnapprovedRecruiter
-from careers.models import Joblist 
+from careers.models import Joblist, Jobapplication, InterViewSchedule
 
 
 def Home(request):
     recruiter = RecruiterData.objects.filter(approval_status = True)
+    jobs = Joblist.objects.filter(approval_status = True)
     context = {
-        "companies":recruiter
+        "companies":recruiter,
+        "jobs":jobs
     }
     return render(request,'index.html',context)
 
 @admin_only
 def Index(request):
     recruiter = RecruiterData.objects.filter(approval_status = True)
+    job = Joblist.objects.filter(approval_status = True)
+    interview = InterViewSchedule.objects.filter(applicant = request.user)
     context = {
-        "companies":recruiter
+        "companies":recruiter,
+        "jobs":job,
+        "interview":interview
     }
     return render(request,'homeindex.html',context)
 
@@ -28,6 +34,8 @@ def AdminIndex(request):
     unapproved_recruitrs = RecruiterData.objects.filter(approval_status = False)
     job = Joblist.objects.filter(approval_status = True)
     apjob = Joblist.objects.filter(approval_status = False)
+    jobapplication = Jobapplication.objects.all()
+    tip = ResumeWritingTips.objects.all()
 
 
     context = {
@@ -37,8 +45,11 @@ def AdminIndex(request):
         "unapproved_recruitrs_count": len(unapproved_recruitrs),
         "job":job,
         "job_count":len(job),
-        "apjob_count":apjob,
-        "apjob_count":len(apjob)
+        "apjob":apjob,
+        "apjob_count":len(apjob),
+        "jobapplication":jobapplication,
+        "jobapplication_count":len(jobapplication),
+        "tip":tip
     }
     return render(request,'adminindex.html',context)
 
@@ -229,3 +240,24 @@ def ChangeProfilephoto(request,pk):
         messages.info(request,"Data Updated..")
         return redirect("StudentsProfile")
     return redirect("StudentsProfile")
+
+def AddResumewritingTip(request):
+    if request.method == "POST":
+
+        tip = ResumeWritingTips.objects.create(tip_title = request.POST['title'], tip = request.POST['tip'])
+        tip.save()
+        messages.info(request,"Data Updated..")
+        return redirect("AdminIndex")
+
+
+    return redirect("AdminIndex")
+
+def deletetip(request,pk):
+    ResumeWritingTips.objects.get(id = pk).delete()
+    messages.info(request,"Data deleted..")
+    return redirect("AdminIndex")
+
+def ResumeTips(request):
+    tip = ResumeWritingTips.objects.all()
+    return render(request,"tips.html",{"tip":tip})
+

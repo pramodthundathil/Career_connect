@@ -31,13 +31,19 @@ class Experiance(models.Model):
 class StudentProfile(models.Model):
     user  = models.ForeignKey(User,on_delete = models.CASCADE,null = True, blank = True)
     last_name = models.CharField(max_length = 255)
-    Phone_number = models.IntegerField(max_length = 255)
+    Phone_number = models.IntegerField()
     address = models.CharField(max_length = 1000)
     Bio_Discription = models.CharField(max_length = 2000)
     Skills = models.CharField(max_length = 1000)
     Languages = models.CharField(max_length = 255)
     resume = models.FileField(upload_to="Student_resumes", null=True)
     Photo = models.FileField(upload_to = "student_photo",blank=True)
+
+
+class ResumeWritingTips(models.Model):
+    tip_title = models.CharField(max_length = 255)
+    tip = models.CharField(max_length=255)
+    date = models.DateField(auto_now_add = True)
 
 
 

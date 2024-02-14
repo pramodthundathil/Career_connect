@@ -19,6 +19,8 @@ urlpatterns = [
     path("updateprofiledata/<int:pk>",views.updateprofiledata,name="updateprofiledata"),
     path("UpdateResume/<int:pk>",views.UpdateResume,name="UpdateResume"),
     path("ChangeProfilephoto/<int:pk>",views.ChangeProfilephoto,name="ChangeProfilephoto"),
+    path("AddResumewritingTip",views.AddResumewritingTip,name="AddResumewritingTip"),
+    path("deletetip/<int:pk>",views.deletetip,name="deletetip"),
+    path("ResumeTips",views.ResumeTips,name="ResumeTips"),
     
-
 ]  

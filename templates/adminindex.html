@@ -44,12 +44,12 @@
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#">Home</a>
               </li>
-              <li class="nav-item">
+              {% comment %} <li class="nav-item">
                 <a class="nav-link" href="#">Recruiters</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Students</a>
-              </li>
+              </li> {% endcomment %}
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Jobs
@@ -79,6 +79,9 @@
         </div>
       </nav>
     <div class="container mt-5">
+      {% for message in messages %}
+      <h6 style="color:red;text-align:center">{{message}}</h6> 
+       {% endfor %}
         <div class="content">
         <div class="items">
             Pending Recruiter requests
@@ -95,7 +98,7 @@
         <div class="items">
             Jobs Pending For approval
             <h3>{{apjob_count}}</h3>
-            <a href="" class="btn btn-dark">View</a>
+            <a data-bs-toggle="modal" data-bs-target="#staticBackdrop1"  class="btn btn-dark">View</a>
 
         </div>
         <div class="items">
@@ -105,10 +108,20 @@
 
         </div>
         <div class="items">
-            Total Students Registed
-            <h3></h3>
-            <a href="" class="btn btn-dark">View</a>
+            Total Application
+            <h3>{{jobapplication_count}}</h3>
+            <a data-bs-toggle="modal" data-bs-target="#staticBackdrop2"  class="btn btn-dark">View</a>
         </div>
+    </div>
+
+    <div class="content mt-5" style="display: flex; justify-content: space-evenly;">
+      <div class="item">
+          <a data-bs-toggle="modal" data-bs-target="#exampleModal" class="btn btn-dark">Add Resume Writing Tip</a>
+      </div>
+      <div class="item">
+        <a data-bs-toggle="modal" data-bs-target="#staticBackdrop3" class="btn btn-dark">View My Tips</a>
+      </div>
+      
     </div>
     </div>
 
@@ -163,7 +176,152 @@
 </div>
 
 
+<!-- Modal 2-->
+<div class="modal fade" id="staticBackdrop1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Approval Pending Job List</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <table class="table table-stripped table-primary">
+            <tr>
+              <th>Recruiter Name</th>
+              <th>Job Title</th>
+              <th>Job Category</th>
+              <th>Mode of work</th>
+              <th>Approve</th>
+            </tr>
+          {% for items in apjob  %}
+          
+            <tr>
+              <td>{{items.recruiter.first_name}}</td>
+              <td>{{items.Job_title}}</td>
+              <td>{{items.job_category}}</td>
+              <td>{{items.mode_of_work}}</td>
+              <td><a href="{%url 'ApproveJob' items.id %}" class="btn btn-secondary btn-sm">Approve</a></td>
+            </tr>
+
+          {% endfor %}
+
+          </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <!-- <button type="button" class="btn btn-primary">Understood</button> -->
+      </div>
+    </div>
+  </div>
+</div>
 
 
+<!-- Modal 3-->
+<div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Job application</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <table class="table table-stripped table-primary">
+            <tr>
+              <th>Applicant Name</th>
+              <th>Job Title</th>
+              <th>Date Of application</th>
+              <th>Comapany</th>
+              <th>View</th>
+              <th>View Resume</th>
+              <th>Delete</th>
+              
+            </tr>
+          {% for items in jobapplication  %}
+          
+            <tr>
+              <td>{{items.applicant.first_name}}</td>
+              <td>{{items.job.Job_title}}</td>
+              <td>{{items.date}}</td>
+              <td>{{items.job.company_profile}}</td>
+              <td><a href="" class="btn btn-sm btn-info">View</a></td>
+              <td><a href="{{items.applicant_profile.resume.url}}" target="_blank" class="btn btn-sm btn-dark">Download</a></td>
+              <td><a href="{%url 'deleteapplication' items.id %}" class="btn btn-danger btn-sm">Delete</a></td>
+            </tr>
+
+          {% endfor %}
+
+          </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <!-- <button type="button" class="btn btn-primary">Understood</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal 4-->
+<div class="modal fade" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Interview writing tips</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <table class="table table-stripped table-primary">
+            <tr>
+              <th>Title</th>
+              <th>Tip</th>
+              
+              <th>action</th>
+              
+            </tr>
+          {% for items in tip  %}
+          
+            <tr>
+              <td>{{items.tip_title}}</td>
+              <td>{{items.tip}}</td>
+              <td><a href="{%url 'deletetip' items.id %}" class="btn btn-danger btn-sm">Delete</a></td>
+            </tr>
+
+          {% endfor %}
+
+          </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <!-- <button type="button" class="btn btn-primary">Understood</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Modal 5 -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Add Interview wriing Tip</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form action="{%url 'AddResumewritingTip' %}" method="post">
+        {% csrf_token %}
+      
+      <div class="modal-body">
+        <input type="text" placeholder="Tip Title" class="form-control" name="title" required><br>
+        <textarea name="tip" id="" cols="30" rows="10" class="form-control" placeholder="tip" name="tip"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary">Save </button>
+      </form>
+      </div>
+    </div>
+  </div>
+</div>
 </body>
 </html>
