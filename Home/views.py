@@ -261,3 +261,11 @@ def ResumeTips(request):
     tip = ResumeWritingTips.objects.all()
     return render(request,"tips.html",{"tip":tip})
 
+def ComapnyView(request,pk):
+
+    company = RecruiterData.objects.get(id = pk)
+    context = {
+        "company":company
+    }
+    return render(request,"viewcompany.html",context)
+

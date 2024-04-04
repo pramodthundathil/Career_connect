@@ -1,0 +1,30 @@
+{% extends "index.html" %}
+{% load static %}
+{% block content %}
+<style>
+    .contents{
+        width:70%;
+        margin: auto;
+        margin-top: 80px;
+        margin-bottom: 80px;
+        padding: 10px;
+    }
+</style>
+
+<div class="contents">
+    <div class="row">
+        <div class="col">
+            <img src="{{company.conmpany_logo_or_photo.url}}" style="width:80%" alt="">
+
+        </div>
+        <div class="col">
+            <h4>name: {{company.profile}} </h4>
+            <h4>Profile: {{company.field_of_work}}</h4>
+
+        </div>
+    </div>
+
+
+</div>
+
+{% endblock %}

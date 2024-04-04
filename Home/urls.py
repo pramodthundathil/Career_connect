@@ -22,5 +22,6 @@ urlpatterns = [
     path("AddResumewritingTip",views.AddResumewritingTip,name="AddResumewritingTip"),
     path("deletetip/<int:pk>",views.deletetip,name="deletetip"),
     path("ResumeTips",views.ResumeTips,name="ResumeTips"),
+    path("ComapnyView/<int:pk>",views.ComapnyView,name="ComapnyView"),
     
 ]  
