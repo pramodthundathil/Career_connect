@@ -215,12 +215,12 @@ def updateprofiledata(request,pk):
     profile = StudentProfile.objects.get(id = pk)
 
     if request.method == "POST":
-        dis = request.POST['dis']
+        # dis = request.POST['dis']
         mob = request.POST['mob']
         email = request.POST['email']
         address = request.POST['address']
 
-        profile.Bio_Discription = dis 
+        # profile.Bio_Discription = dis 
         profile.Phone_number = mob 
         profile.address = address
         profile.save()
