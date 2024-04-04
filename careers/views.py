@@ -4,6 +4,15 @@ from .froms import JobAddForm
 from .models import Joblist, Jobapplication, InterViewSchedule
 from Home.models import RecruiterData, StudentProfile, Education
 
+
+import PyPDF2
+import PyPDF2
+import re
+import string
+import pandas as pd
+import matplotlib.pyplot as plt
+import imageio
+
 def JobListing(request):
     form = JobAddForm()
     jobs = Joblist.objects.filter(recruiter = request.user)

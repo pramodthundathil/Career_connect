@@ -1,0 +1,61 @@
+{% extends "recruiterindex.html" %}
+{% load static %}
+{% block content %}
+<style>
+    .new {
+        height: 100px;
+        background-color: rgb(26, 26, 170);
+    }
+
+    .inputclass input {
+        margin-left: 10px;
+        width: 90%;
+        padding: 6px;
+    }
+    .radiobuttons input{
+        margin-left: 10px;
+    }
+</style>
+<div class="container-fluid new">
+
+</div>
+
+ <!-- Newsletter Start -->
+ <div class="container-xxl bg-primary newsletter my-5 wow fadeInUp" data-wow-delay="0.1s">
+    <div class="container px-lg-5">
+        <div class="row align-items-center" style="height: auto;">
+            <div class="col-12 col-md-6">
+                <br><br>
+                
+                {% for i in userprofile  %}
+                <img src="{{i.profilepic.url}}" style="width:100px;height:100px;border-radius: 50%" alt="">
+                    
+                {% endfor %}
+                <h3 style="color:white"> {{request.user.first_name}} {{request.user.last_name}}</h3>
+                    <br><br>
+                
+                {% for i in dmodel %}
+                    
+                    
+                <h3 class="text-white">Hi! {{i.name}} Your Predicted Result is...</h3>
+                <h2 style="color:orangered">{{i.Personality}}</h2>
+                {% endfor %}
+<!-- <p>{{summary}}</p> -->
+
+
+    
+                
+            </div>
+            <div class="col-md-6 text-center mb-n5 d-none d-md-block">
+                <img class="img-fluid mt-5" style="width:90%;height:auto;" src="{%static 'img/graph.png' %}">
+                
+            </div>
+            
+        </div>
+        <br><br><br>
+    </div>
+</div>
+<!-- Newsletter End -->    
+
+  
+{% endblock content %}

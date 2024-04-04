@@ -23,5 +23,9 @@ urlpatterns = [
     path("deletetip/<int:pk>",views.deletetip,name="deletetip"),
     path("ResumeTips",views.ResumeTips,name="ResumeTips"),
     path("ComapnyView/<int:pk>",views.ComapnyView,name="ComapnyView"),
+    path("Aptitudetest",views.Aptitudetest,name="Aptitudetest"),
+    path("PredictPersonality/<int:pk>",views.PredictPersonality,name="PredictPersonality"),
+    path("PredictionResults/<int:pk>",views.PredictionResults,name="PredictionResults"),
+    
     
 ]  

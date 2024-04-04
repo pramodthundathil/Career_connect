@@ -46,4 +46,18 @@ class ResumeWritingTips(models.Model):
     date = models.DateField(auto_now_add = True)
 
 
+class Personality(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE,null=True,blank=True)
+    Gender = models.CharField(max_length=20,null=True,blank=True)
+    Age = models.CharField(max_length=5,null=True,blank=True)
+    Openness = models.CharField(max_length=2)
+    Neuroticiem = models.CharField(max_length=2)
+    Agreeableness = models.CharField(max_length=2)
+    Conscientiousness = models.CharField(max_length=2)
+    Extraversion = models.CharField(max_length=2)
+    Personality = models.CharField(max_length=255,null=True,blank=True)
+    plot = models.FileField(upload_to="plots",null=True,blank=True)
+    
+
+
 

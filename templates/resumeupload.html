@@ -1,0 +1,166 @@
+{% extends "index.html" %}
+{% load static %}
+{% block content %}
+<style>
+    body{
+        background-color: rgb(3, 3, 52) !important;
+    }
+    .new {
+        height: 100px;
+        background-color: rgb(26, 26, 170);
+    }
+
+    .inputclass input {
+        margin-left: 10px;
+        width: 90%;
+        padding: 6px;
+    }
+
+    .radiobuttons input {
+        margin-left: 10px;
+    }
+
+    /* .val{
+        height: 500px !important;
+    } */
+    .radiobuttons {
+        height: 500px !important;
+        background-color: black;
+        color: white;
+        padding: 20px;
+        
+    }
+</style>
+<div class="container-fluid new">
+
+</div>
+
+<!-- About Start -->
+<div class="container-xxl py-5 val">
+    <div class="container px-lg-5">
+        <div class="row g-5">
+            <div class="col-md-2"></div>
+            <div class="col-md-7 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="section-title position-relative mb-4 pb-2">
+                    <h6 class="position-relative text-primary ps-4 text-light">Attend Aptitude test</h6>
+                    <h2 class="mt-2 text-light">Fill Out the Fields</h2>
+                </div>
+                <p class="mb-4 text-light">Select your score according to your skills</p>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="row g-3 radiobuttons">
+                        <div class="col-sm-12">
+                            <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>
+                                Gender: <br><br>
+                                <input type="radio" name="Gender" value="Male" required> Male
+                                <input type="radio" name="Gender" value="Female" required> Female
+                            </h6>
+                        </div>
+                        <div class="col-sm-12 inputclass">
+                            <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>
+                                Age <br><br>
+                                <input type="number" name="age" required>  
+                            </h6>
+                        </div>
+
+                        <div class="col-sm-12">
+                            <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>
+                                <label for=""><small>"Enjoy New Experience or thing(Openness)"</small> <a href="#"
+                                        onclick="alert('People who like to learn new things and enjoy new experiences usually score high in openness. Openness includes traits like being insightful and imaginative and having a wide variety of interests.')">
+                                        ( info )</a></label><br><br>
+                                <input type="radio" name="Openness" required value="1" required> 1
+                                <input type="radio" name="Openness" required value="2"> 2
+                                <input type="radio" name="Openness" required value="3"> 3
+                                <input type="radio" name="Openness" required value="4"> 4
+                                <input type="radio" name="Openness" required value="5"> 5
+                                <input type="radio" name="Openness" required value="6"> 6
+                                <input type="radio" name="Openness" required value="7"> 7
+                                <input type="radio" name="Openness" required value="8"> 8
+                                <input type="radio" name="Openness" required value="9"> 9
+                                <input type="radio" name="Openness" required value="10"> 10
+                            </h6>
+                        </div>
+                        <div class="col-sm-12">
+                            <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>
+                                <label for=""><small> "How Offen You Feel Negativity(Neuroticism)"</small><a href="#"
+                                        onclick="alert('Neuroticism or Emotional Stability relates to degree of negative emotions. People that score high on neuroticism often experience emotional instability and negative emotions. Characteristics typically include being moody and tense.')">
+                                        ( info )</a></label><br><br>
+                                <input type="radio" name="Neuroticism" required value="1"> 1
+                                <input type="radio" name="Neuroticism" required value="2"> 2
+                                <input type="radio" name="Neuroticism" required value="3"> 3
+                                <input type="radio" name="Neuroticism" required value="4"> 4
+                                <input type="radio" name="Neuroticism" required value="5"> 5
+                                <input type="radio" name="Neuroticism" required value="6"> 6
+                                <input type="radio" name="Neuroticism" required value="7"> 7
+                                <input type="radio" name="Neuroticism" required value="8"> 8
+                                <input type="radio" name="Neuroticism" required value="9"> 9
+                                <input type="radio" name="Neuroticism" required value="10"> 10
+                            </h6>
+                        </div>
+                        <div class="col-sm-12">
+                            <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>
+                                <label for=""><small>"How much would you like work with your
+                                        peers(Agreeableness)"</small><a href="#"
+                                        onclick="alert('As it perhaps sounds, these individuals are warm, friendly, compassionate and cooperative and traits include being kind, affectionate, and sympathetic. In contrast, people with lower levels of agreeableness may be more distant.')">
+                                        ( info )</a></label><br><br>
+                                <input type="radio" name="Agreeableness" required value="1"> 1
+                                <input type="radio" name="Agreeableness" required value="2"> 2
+                                <input type="radio" name="Agreeableness" required value="3"> 3
+                                <input type="radio" name="Agreeableness" required value="4"> 4
+                                <input type="radio" name="Agreeableness" required value="5"> 5
+                                <input type="radio" name="Agreeableness" required value="6"> 6
+                                <input type="radio" name="Agreeableness" required value="7"> 7
+                                <input type="radio" name="Agreeableness" required value="8"> 8
+                                <input type="radio" name="Agreeableness" required value="9"> 9
+                                <input type="radio" name="Agreeableness" required value="10"> 10
+                            </h6>
+                        </div>
+                        <div class="col-sm-12">
+                            <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>
+                                <label for=""><small>"Wishing to do one's work well and
+                                        thoroughly(Conscientiousness)"</small><a href="#"
+                                        onclick="alert('People that have a high degree of conscientiousness are reliable and prompt. Traits include being organised, methodic, and thorough.')">
+                                        ( info )</a></label><br><br>
+                                <input type="radio" name="Conscientiousness" required value="1"> 1
+                                <input type="radio" name="Conscientiousness" required value="2"> 2
+                                <input type="radio" name="Conscientiousness" required value="3"> 3
+                                <input type="radio" name="Conscientiousness" required value="4"> 4
+                                <input type="radio" name="Conscientiousness" required value="5"> 5
+                                <input type="radio" name="Conscientiousness" required value="6"> 6
+                                <input type="radio" name="Conscientiousness" required value="7"> 7
+                                <input type="radio" name="Conscientiousness" required value="8"> 8
+                                <input type="radio" name="Conscientiousness" required value="9"> 9
+                                <input type="radio" name="Conscientiousness" required value="10"> 10
+                            </h6>
+                        </div>
+                        <div class="col-sm-12">
+                            <h6 class="mb-3"><i class="fa fa-check text-primary me-2"></i>
+                                <label for=""><small>"How outgoing and social interaction you
+                                        like(Extraversion)"</small><a href="#"
+                                        onclick="alert('Extraversion traits include being; energetic, talkative, and assertive (sometime seen as outspoken by Introverts). Extraverts get their energy and drive from others, while introverts are self-driven get their drive from within themselves.')">
+                                        ( info )</a></label><br><br>
+                                <input type="radio" name="Extraversion" required value="1"> 1
+                                <input type="radio" name="Extraversion" required value="2"> 2
+                                <input type="radio" name="Extraversion" required value="3"> 3
+                                <input type="radio" name="Extraversion" required value="4"> 4
+                                <input type="radio" name="Extraversion" required value="5"> 5
+                                <input type="radio" name="Extraversion" required value="6"> 6
+                                <input type="radio" name="Extraversion" required value="7"> 7
+                                <input type="radio" name="Extraversion" required value="8"> 8
+                                <input type="radio" name="Extraversion" required value="9"> 9
+                                <input type="radio" name="Extraversion" required value="10"> 10
+                            </h6>
+                        </div>
+                    </div>
+                    <br><br><br><br><br><br><br>
+                    <button class="btn btn-primary rounded-pill px-4 me-3" type="submit">Submit</button>
+            </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+
+<!-- About End -->
+
+{% endblock %}

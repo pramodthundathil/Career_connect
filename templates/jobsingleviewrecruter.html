@@ -62,6 +62,7 @@
                 <th>Applied Date</th>
                 <th> View Student</th>
                 <th>Download Resume</th>
+                <th>Analize resume</th>
 
             </tr>
             {% for data in students  %}
@@ -72,6 +73,7 @@
                 <td>{{data.date}}</td>
                 <td><a href="{%url 'studentProfileRecruiterView' data.id %}" class="btn btn-outline-info btn-sm">View</a></td>
                 <td><a href="{{data.applicant_profile.resume.url}}" target="_blank" class="btn btn-outline-dark btn-sm">Download</a></td>
+                <td><a href="{%url 'PredictionResults' data.applicant.id  %}" class="btn btn-info">Analize Resume</a></td>
             </tr>
             {% endfor %}
 

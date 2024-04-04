@@ -1,13 +1,13 @@
 from django.http import HttpResponse
 from django.shortcuts import redirect
-from .models import RecruiterData
+from .models import RecruiterData, Personality
 
 
 #decorator for user redirect...............
 def unautenticated_user(view_func):
     def wrapper_func(request,*args,**kwargs):
         if request.user.is_authenticated:
-            return redirect('homescreen')
+            return redirect('Index')
         else:
             return view_func(request,*args,**kwargs)
         
@@ -67,3 +67,14 @@ def UnapprovedRecruiter(func):
             return HttpResponse(text)
         
     return warpper_fun
+
+def ApptitudetestDone(view_func):
+    def wrapper_func(request,*args,**kwargs):
+        if request.user.groups.all()[0].name == "student":
+            if Personality.objects.filter(user = request.user).exists():
+                return view_func(request,*args,**kwargs)
+            else:
+                return redirect("Aptitudetest")
+        else:
+            return view_func(request,*args,**kwargs)
+    return wrapper_func
